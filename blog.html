@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Conecta Consórcios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* remove scrollbar*/
+      .carousel-track {
+        -ms-overflow-style: none;  
+        scrollbar-width: none;    
+      }
+      .carousel-track::-webkit-scrollbar {
+        display: none;             
+      }
+
+      .card-link { 
+        display: block; 
+        text-decoration: none; 
+        color: inherit; 
+      }
+
+      /* foco acessível */
+      .card-link:focus { 
+        outline: 3px solid rgba(6,182,212,0.25); 
+        outline-offset: 4px; 
+        border-radius: 0.5rem; 
+      }
+    </style>
+  </head>
+  <body class="font-[Sans-serif] bg-gray-50 text-[#0a0f1a] pt-20">
+
+    <header class="bg-white text-[#0a0f1a] py-4 shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+            <img src="imagens/logo-conecta.png" alt="Logo Conecta" class="h-12" />
+
+            <div class="flex items-center gap-4">
+                <a href="artigos.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">ARTIGOS</a>
+                <a href="blog.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition"> BLOG </a>
+                <a href="sobre.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">QUEM SOMOS</a>
+            </div>
+        </div> 
+    </header>
+
+
+    <section class="py-12 bg-[#0a0f1a]">
+        <div class="max-w-5xl mx-auto px-4">
+            <h1 class="text-4xl font-bold text-white text-left mb-2">CONSÓRCIO NA PRÁTICA</h1>
+            <p class="text-gray-300 mb-6">Veja histórias reais e descubra como o consórcio funciona de verdade.</p>
+        </div>
+
+        <div class="relative flex items-center justify-center text-center">
+            <button class="carousel-prev text-white text-3xl px-2 hover:text-cyan-400 transition" aria-label="Anterior">
+            &#10094;
+            </button>
+
+            <div class="carousel-track flex gap-4 overflow-x-auto px-4 max-w-[900px] snap-x snap-mandatory touch-pan-x">
+            <a href="https://www.instagram.com/reel/DOblPp7ACtw/?igsh=MWdpa3F6dHB1aTExMQ%3D%3D" target="_blank" rel="noopener" class="card-link snap-start">
+                <div class="bg-gray-100 rounded-xl w-56 flex-shrink-0 hover:scale-105 transition-transform card-item overflow-hidden">
+                <img src="imagens/wagner.jpg" alt="história 1" class="w-full" />
+                <div class="p-4">
+                    <p class="font-medium">Consórcio como investimento</p>                  
+                </div>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/reel/DOJ_AUKgG1T/?igsh=MTNzNXFmcnJ2ODJzYQ%3D%3D" target="_blank" rel="noopener" class="card-link snap-start">
+                <div class="bg-gray-100 rounded-xl w-56 flex-shrink-0 hover:scale-105 transition-transform card-item overflow-hidden">
+                <img src="imagens/taxa.jpg" alt="história 2" class="w-full" />
+                <div class="p-4">
+                    <p class="font-medium">Saiba o que é taxa de administração</p>
+                </div>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/reel/DN0oB28wJp1/?igsh=ZDZrem12eHZmZzNz" target="_blank" rel="noopener" class="card-link snap-start">
+                <div class="bg-gray-100 rounded-xl w-56 flex-shrink-0 hover:scale-105 transition-transform card-item overflow-hidden">
+                <img src="imagens/automovel.jpg" alt="história 3" class="w-full" />
+                <div class="p-4">
+                  <p class="font-medium">Lance por carta de avaliação</p>
+                </div>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/reel/REEL_ID_4" target="_blank" rel="noopener" class="card-link snap-start">
+                <div class="bg-gray-100 rounded-xl w-56 flex-shrink-0 hover:scale-105 transition-transform card-item overflow-hidden">
+                <img src="imagens/wagner.jpg" alt="história 4" class="w-full" />
+                <div class="p-4">   
+                    <p class="font-medium">Lorem ipsum dolor sit amet</p>
+                </div>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/reel/REEL_ID_5" target="_blank" rel="noopener" class="card-link snap-start">
+                <div class="bg-gray-100 rounded-xl w-56 flex-shrink-0 hover:scale-105 transition-transform card-item overflow-hidden">
+                <img src="imagens/wagner.jpg" alt="história 5" class="w-full" />
+                <div class="p-4">
+                    <p class="font-medium">Lorem ipsum dolor sit amet</p>
+                </div>
+                </div>
+            </a>
+            
+            <a href="https://www.instagram.com/reel/REEL_ID_6" target="_blank" rel="noopener" class="card-link snap-start">
+                <div class="bg-gray-100 rounded-xl w-56 flex-shrink-0 hover:scale-105 transition-transform card-item overflow-hidden">
+                <img src="imagens/wagner.jpg" alt="história 6" class="w-full" />
+                <div class="p-4">
+                  <p class="font-medium">Lorem ipsum dolor sit amet</p>
+                </div>
+                </div>
+            </a>
+            </div>
+
+            <button class="carousel-next text-white text-3xl px-2 hover:text-cyan-400 transition" aria-label="Próximo">
+            &#10095;
+            </button>
+        </div>
+    </section>
+
+    <section id="artigos" class="bg-gray-50 py-16">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-2xl font-semibold text-[#133540] text-left mb-10">
+          INFORME-SE COM A CONECTA
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform"
+          >
+            <img
+              src="img1.jpg"
+              alt="notícia conecta"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="text-[#133540] text-lg font-semibold mb-2">TÍTULO</h3>
+              <p class="text-gray-600 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididun
+              </p>
+              <a href="#" class="text-cyan-400 font-semibold hover:underline"
+                >Continuar lendo</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform"
+          >
+            <img
+              src="img2.jpg"
+              alt="notícia conecta"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-5">
+              <h3 class="text-[#133540] text-lg font-semibold mb-2">TÍTULO</h3>
+              <p class="text-gray-600 mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididun
+              </p>
+              <a href="#" class="text-cyan-400 font-semibold hover:underline"
+                >Continuar lendo</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="bg-[#0a0f1a] text-white text-justify" id="guia-alavancagem">
+        <div class="max-w-5xl mx-auto px-4 py-16">
+            <h1 class="text-3xl font-bold mb-2">
+                PEQUENO GUIA DE ALAVANCAGEM FINANCEIRA
+            </h1>
+            <h3 class="mb-8">
+                Aumente seu patrimônio com a Conecta Consórcios
+            </h3>
+
+            <section class="mb-8">
+                <h4 class="text-xl font-semibold mb-2">
+                O que é alavancagem financeira
+                </h4>
+                <p class="mb-4">
+                Alavancagem financeira é o uso inteligente de recursos de terceiros
+                para ampliar o potencial de crescimento do seu patrimônio. Em termos
+                práticos, significa multiplicar o poder de compra sem precisar ter
+                todo o capital disponível no momento da aquisição. É uma estratégia
+                comum no mercado empresarial, mas que vem ganhando força também entre
+                pessoas físicas que buscam acelerar conquistas de forma planejada e
+                sustentável.
+                </p>
+            </section>
+
+            <section class="mb-8">
+                <h4 class="text-xl font-semibold mb-2">
+                O consórcio como ferramenta de alavancagem
+                </h4>
+                <p class="mb-4">
+                No consórcio, o participante utiliza um modelo coletivo de
+                autofinanciamento para alcançar bens de alto valor como imóveis,
+                veículos, máquinas, entre outros sem juros e com previsibilidade. Essa
+                previsibilidade é um diferencial estratégico: permite planejar
+                aquisições sem comprometer o fluxo de caixa, usando o crédito obtido
+                como uma alavanca para gerar retorno financeiro ou operacional.
+                </p>
+                <p>
+                Exemplo: um empreendedor pode usar a carta de crédito de um consórcio
+                imobiliário para adquirir um ponto comercial. Esse novo ativo, por sua
+                vez, gera receita e valoriza o patrimônio. Assim, o consórcio não é
+                apenas uma forma de comprar, é uma forma de crescer.
+                </p>
+            </section>
+
+            <section class="mb-8">
+                <h4 class="text-xl font-semibold mb-2">
+                Alavancagem sem endividamento
+                </h4>
+                <p class = "mb-4">
+                Ao contrário do financiamento tradicional, o consórcio não cobra
+                juros. As parcelas são compostas pelo valor do bem dividido pelo
+                prazo, mais taxa de administração e fundo de reserva. Isso reduz o
+                custo financeiro total e elimina o risco de sobrealavancagem que
+                acontece quando o uso de dívida supera a capacidade de pagamento.
+                </p>
+                <p>
+                Na prática, é possível usar o consórcio para alavancar investimentos
+                de forma sustentável, sem comprometer a saúde financeira do negócio ou
+                da pessoa física.
+                </p>
+            </section>
+
+            <section class="mb-8">
+                <h4 class="text-xl font-semibold mb-2">
+                Estratégias para usar o consórcio como alavanca
+                </h4>
+                <ol class="list-decimal list-inside space-y-2 mb-4">
+                <li>
+                    <strong>Antecipar investimentos:</strong> adquirir antes de acumular
+                    o valor total do bem.
+                </li>
+                <li>
+                    <strong>Proteger o capital:</strong> manter o dinheiro aplicado
+                    enquanto o consórcio evolui.
+                </li>
+                <li>
+                    <strong>Expandir operações:</strong> usar cartas de crédito para
+                    aumentar capacidade produtiva.
+                </li>
+                <li>
+                    <strong>Gerar patrimônio:</strong> trocar o crédito por ativos que
+                    se valorizam com o tempo.
+                </li>
+                </ol>
+                <p>
+                Essas ações transformam o consórcio em uma ferramenta tática,
+                alinhando controle financeiro e crescimento planejado.
+                </p>
+            </section>
+
+            <section>
+                <h4 class="text-xl font-semibold mb-2">Conclusão</h4>
+                <p>
+                Alavancar é crescer com método. O consórcio, quando bem utilizado, é
+                uma das formas mais eficientes de fazer isso sem comprometer o
+                equilíbrio financeiro e na Conecta Consórcios, acreditamos que <strong>a verdadeira alavancagem vem da
+                combinação entre estratégia, disciplina e visão de longo prazo.</strong>
+                </p>
+            </section>
+            <a href="artigos.html" class="block text-right text-cyan-400 hover:underline cursor-pointer">Leia mais artigos</a>
+        </div>
+    </article>
+
+    <!-- Simulador Interativo -->
+    <section class="bg-gradient-to-br from-cyan-50 to-white py-20">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-[#133540] mb-4" id="simulador">Simule agora e descubra como o consórcio pode transformar seus planos em realidade</h2>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+          <!-- Categorias -->
+          <div class="mb-8">
+            <p class="text-center text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">Escolha seu objetivo</p>
+            <div class="grid grid-cols-4 gap-3">
+              <button class="categoria-btn group bg-white border-2 border-gray-200 rounded-2xl p-6 transition-all duration-300 hover:border-[#133540] hover:shadow-lg" 
+                      data-cat="casa" data-default="imagens/casa.png">
+                <img src="imagens/casa.png" class="h-10 mx-auto mb-2 transition-transform group-hover:scale-110" alt="Casa">
+                <span class="text-xs font-medium text-gray-600 group-hover:text-[#133540]">Imóvel</span>
+              </button>
+              <button class="categoria-btn group bg-white border-2 border-gray-200 rounded-2xl p-6 transition-all duration-300 hover:border-[#133540] hover:shadow-lg" 
+                      data-cat="carro" data-default="imagens/carro.png">
+                <img src="imagens/carro.png" class="h-10 mx-auto mb-2 transition-transform group-hover:scale-110" alt="Carro">
+                <span class="text-xs font-medium text-gray-600 group-hover:text-[#133540]">Carro</span>
+              </button>
+              <button class="categoria-btn group bg-white border-2 border-gray-200 rounded-2xl p-6 transition-all duration-300 hover:border-[#133540] hover:shadow-lg" 
+                      data-cat="moto" data-default="imagens/moto.png">
+                <img src="imagens/motocicleta.png" class="h-10 mx-auto mb-2 transition-transform group-hover:scale-110" alt="Moto">
+                <span class="text-xs font-medium text-gray-600 group-hover:text-[#133540]">Moto</span>
+              </button>
+              <button class="categoria-btn group bg-white border-2 border-gray-200 rounded-2xl p-6 transition-all duration-300 hover:border-[#133540] hover:shadow-lg" 
+                      data-cat="servico" data-default="imagens/diamante.png">
+                <img src="imagens/servico.png" class="h-10 mx-auto mb-2 transition-transform group-hover:scale-110" alt="Serviço">
+                <span class="text-xs font-medium text-gray-600 group-hover:text-[#133540]">Serviço</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Modo de Simulação -->
+          <div class="mb-8">
+            <p class="text-center text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wide">Simule por</p>
+            <div class="flex justify-center gap-3">
+              <button class="modo-btn px-8 py-3 rounded-xl font-semibold transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-[#133540]" 
+                      data-modo="credito">Valor do Crédito</button>
+              <button class="modo-btn px-8 py-3 rounded-xl font-semibold transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-[#133540]" 
+                      data-modo="parcela">Valor da Parcela</button>
+            </div>
+          </div>
+
+          <!-- Valor Selecionado -->
+          <div class="text-center mb-8 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-8">
+            <p class="text-sm font-medium text-gray-600 mb-2">Valor aproximado <span id="artigo">do</span> <span id="labelModo">crédito</span></p>
+            <p id="valorExibido" class="text-5xl font-bold text-[#133540] mb-1">R$ 0,00</p>
+            <p class="text-xs text-gray-500">Arraste o controle abaixo para ajustar</p>
+          </div>
+
+          <!-- Range Slider -->
+          <div class="mb-8">
+            <input id="rangeSimulador" type="range" min="0" max="100000" 
+                   class="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#133540] slider">
+            <div class="flex justify-between text-sm font-medium text-gray-500 mt-3 px-2">
+              <span id="valorMin">R$ 0,00</span>
+              <span id="valorMax">R$ 0,00</span>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="text-center">
+            <button onclick="scrollToForm()" 
+                    class="bg-gradient-to-r from-cyan-700 to-[#133540] text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                Quero realizar meu sonho agora!
+            </button>
+            <p class="text-xs text-gray-500 mt-4">Sem juros • Rápida aprovação • 100% transparente</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer class="bg-[#0a0f1a] text-gray-400 py-6">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-6">
+        
+        <!-- Texto -->
+        <div class="text-center md:text-left">
+          <p class="text-sm mb-2 text-gray-300">
+            Conecta Consórcios • Transparência que conecta
+          </p>
+          <p class="text-xs text-gray-500">
+            Autorizada e regulamentada pelo Banco Central do Brasil
+          </p>
+        </div>
+
+        <!-- Ícones -->
+        <div class="flex justify-center md:justify-end gap-6">
+          <a href="https://www.instagram.com/conectaconsorcios" target="_blank" class="hover:text-cyan-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.88a1.12 1.12 0 1 1-2.25 0 1.12 1.12 0 0 1 2.25 0z" />
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@conectaconsorcio" target="_blank" class="hover:text-cyan-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <path d="M12.5 2c.3 2.2 1.8 4 3.9 4.7V10c-1.1-.1-2.1-.4-3-1v6.1c0 2.3-1.7 4.3-4 4.8-2.8.5-5.4-1.3-6-4-.5-2.8 1.3-5.4 4-6 .4-.1.8-.1 1.2-.1V12c-.2 0-.5 0-.7.1-1.2.2-2.1 1.3-2.1 2.5 0 1.5 1.4 2.7 2.9 2.4 1.1-.2 1.9-1.2 1.9-2.3V2h2.9z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        const track = document.querySelector('.carousel-track');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+
+        if(!track || !prevBtn || !nextBtn) return;
+
+        // determina largura de um card visível (usa o primeiro .card-item)
+        function getScrollAmount() {
+            const card = track.querySelector('.card-item');
+            if (!card) return track.clientWidth;
+            const gap = parseFloat(getComputedStyle(track).gap) || 16; // gap do flex
+            const width = card.getBoundingClientRect().width;
+            return Math.round(width + gap);
+        }
+
+        prevBtn.addEventListener('click', () => {
+            const amount = getScrollAmount();
+            track.scrollBy({ left: -amount, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const amount = getScrollAmount();
+            track.scrollBy({ left: amount, behavior: 'smooth' });
+        });
+
+        // opcional: teclas esquerda/direita quando o track está em foco (acessibilidade)
+        track.setAttribute('tabindex', '0');
+        track.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextBtn.click();
+            if (e.key === 'ArrowLeft') prevBtn.click();
+        });
+
+        // opcional: esconder setas quando não há overflow
+        function updateArrows() {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            if (maxScroll <= 1) {
+              prevBtn.style.visibility = 'hidden';
+              nextBtn.style.visibility = 'hidden';
+            } else {
+              prevBtn.style.visibility = 'visible';
+              nextBtn.style.visibility = 'visible';
+            }
+        }
+        window.addEventListener('resize', updateArrows);
+        updateArrows();
+      });
+    </script>
+    <script src="interactivePanel2.js"></script>
+  </body>
+</html>

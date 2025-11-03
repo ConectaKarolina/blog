@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artigos - Conecta Consórcios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="font-[Sans-serif] bg-gray-50 text-[#0a0f1a] pt-20">
+    <!-- Header Fixo -->
+    <header class="bg-white text-[#0a0f1a] py-4 shadow-sm fixed top-0 left-0 right-0 z-50">
+      <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+        <img src="imagens/logo-conecta.png" alt="Logo Conecta" class="h-12" />
+        <div class="flex items-center gap-4">
+          <a href="artigos.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">ARTIGOS</a>
+          <a href="blog.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">BLOG</a>
+          <a href="sobre.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">QUEM SOMOS</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section Nav com Filtros -->
+    <section id="nav" class="bg-gradient-to-t from-gray-50 to-white py-12 pb-6">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6"> 
+          <!-- Filtro de Categorias -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm font-semibold text-[#133540]">Filtrar por:</span>
+            <div class="flex flex-wrap gap-2">
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-[#133540] text-white shadow-md" data-categoria="TODOS">
+                Todos
+              </button>
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="DESTAQUE">
+                Destaque
+              </button>
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="COMPARATIVO">
+                Comparativo
+              </button>
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="EDUCAÇÃO">
+                Educação
+              </button>
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="ESTRATÉGIA">
+                Estratégia
+              </button>
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="INVESTIMENTO">
+                Investimento
+              </button>
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="PLANEJAMENTO">
+                Planejamento
+              </button>
+              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="IMÓVEIS">
+                Imóveis
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contador de Resultados -->
+        <div class="mt-6 text-center">
+          <p id="contador-resultados" class="text-sm text-gray-600">
+            <span class="font-semibold" id="total-artigos">8</span> artigos encontrados
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid de Artigos -->
+    <section class="py-16 pt-6 bg-gray-50">
+      <div class="max-w-5xl mx-auto px-4">
+        
+        <!-- Artigo em Destaque -->
+        <article class="artigo-item bg-white rounded-xl shadow-lg overflow-hidden mb-12 hover:-translate-y-1 transition-transform" data-categoria="DESTAQUE">
+          <div class="md:flex">
+            <div class="md:w-2/5">
+              <img src="imagens/alavancagem-financeira-consorcio.png" alt="Alavancagem Financeira" class="w-full h-full object-cover" />
+            </div>
+            <div class="md:w-3/5 p-8">
+              <span class="inline-block bg-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">DESTAQUE</span>
+              <h2 class="text-3xl font-bold text-[#133540] mb-4">Pequeno Guia de Alavancagem Financeira</h2>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Alavancagem financeira é o uso inteligente de recursos de terceiros para ampliar o potencial de crescimento do seu patrimônio. Descubra como o consórcio pode ser uma ferramenta estratégica para multiplicar seu poder de compra sem comprometer sua saúde financeira.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="blog.html#guia-alavancagem" class="text-cyan-600 font-semibold hover:text-cyan-700 transition flex items-center gap-2">
+                  Ler artigo completo
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+                <span class="text-sm text-gray-500">8 min de leitura</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Grade de Artigos -->
+        <div class="grid md:grid-cols-2 gap-8">
+          
+          <!-- Artigo 2 -->
+          <article class="artigo-item bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform" data-categoria="COMPARATIVO">
+            <img src="imagens/consorcio-financiamento-balanço.png" alt="Consórcio vs Financiamento" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <span class="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">COMPARATIVO</span>
+              <h3 class="text-xl font-bold text-[#133540] mb-3">Consórcio ou Financiamento: Qual Escolher?</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Entenda as principais diferenças entre consórcio e financiamento tradicional, quando usar cada opção e como escolher a melhor alternativa para seu perfil financeiro.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="consorcio-financiamento.html" class="text-cyan-600 font-semibold hover:text-cyan-700 transition">Continuar lendo</a>
+                <span class="text-sm text-gray-500">6 min</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artigo 3 -->
+          <article class="artigo-item bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform" data-categoria="EDUCAÇÃO">
+            <img src="imagens/guia-consorcio.jpg" alt="Como Funciona o Consórcio" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <span class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">EDUCAÇÃO</span>
+              <h3 class="text-xl font-bold text-[#133540] mb-3">Como Funciona o Consórcio: Guia Completo</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Um guia detalhado sobre o funcionamento do consórcio: assembleias, sorteios, lances, contemplação e todos os termos que você precisa conhecer antes de começar.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="como-funciona-o-consorcio.html" class="text-cyan-600 font-semibold hover:text-cyan-700 transition">Continuar lendo</a>
+                <span class="text-sm text-gray-500">10 min</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artigo 4 -->
+          <article class="artigo-item bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform" data-categoria="ESTRATÉGIA">
+            <img src="imagens/estrategia-lance-consorcio.png" alt="Estratégias de Lance" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <span class="inline-block bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">ESTRATÉGIA</span>
+              <h3 class="text-xl font-bold text-[#133540] mb-3">Estratégias de Lance: Como Antecipar sua Contemplação</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Aprenda as melhores estratégias para dar lances no consórcio, calcular o valor ideal e aumentar suas chances de contemplação sem comprometer seu orçamento.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="estrategias-lance.html" class="text-cyan-600 font-semibold hover:text-cyan-700 transition">Continuar lendo</a>
+                <span class="text-sm text-gray-500">7 min</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artigo 5 -->
+          <article class="artigo-item bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform" data-categoria="INVESTIMENTO">
+            <img src="imagens/investimento-patrimonial-consorcio.jpg" alt="Consórcio para Investimento" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <span class="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">INVESTIMENTO</span>
+              <h3 class="text-xl font-bold text-[#133540] mb-3">Consórcio como Ferramenta de Investimento</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Descubra como usar o consórcio para adquirir ativos que geram renda, proteger seu capital e construir patrimônio de forma estratégica e sem juros.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="consorcio-como-investimento.html" class="text-cyan-600 font-semibold hover:text-cyan-700 transition">Continuar lendo</a>
+                <span class="text-sm text-gray-500">9 min</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artigo 6 -->
+          <article class="artigo-item bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform" data-categoria="EDUCAÇÃO">
+            <img src="imagens/mitos-verdades-consorcio.png" alt="Mitos e Verdades" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <span class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">EDUCAÇÃO</span>
+              <h3 class="text-xl font-bold text-[#133540] mb-3">7 Mitos Sobre Consórcio que Você Precisa Conhecer</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Desmistificamos as crenças mais comuns sobre consórcios: demora para contemplar, dificuldade de aprovação, custos ocultos e outros equívocos frequentes.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="mitos-e-verdades.html" class="text-cyan-600 font-semibold hover:text-cyan-700 transition">Continuar lendo</a>
+                <span class="text-sm text-gray-500">5 min</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artigo 7 -->
+          <article class="artigo-item bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform" data-categoria="PLANEJAMENTO">
+            <img src="imagens/planejamento-financeiro-consorcio.png" alt="Planejamento Financeiro" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">PLANEJAMENTO</span>
+              <h3 class="text-xl font-bold text-[#133540] mb-3">Como Planejar Suas Finanças para o Consórcio</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Um passo a passo completo para organizar suas finanças, definir o valor ideal da parcela e garantir que o consórcio caiba no seu orçamento sem apertos.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="#artigo-planejamento" class="text-cyan-600 font-semibold hover:text-cyan-700 transition">Continuar lendo</a>
+                <span class="text-sm text-gray-500">8 min</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Artigo 8 -->
+          <article class="artigo-item bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 transition-transform" data-categoria="IMÓVEIS">
+            <img src="imagens/consorcio-imobiliario.png" alt="Consórcio Imobiliário" class="w-full h-48 object-cover" />
+            <div class="p-6">
+              <span class="inline-block bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">IMÓVEIS</span>
+              <h3 class="text-xl font-bold text-[#133540] mb-3">Consórcio Imobiliário: Tudo que Você Precisa Saber</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Entenda as particularidades do consórcio imobiliário, documentação necessária, prazos típicos e como usar a carta para realizar o sonho da casa própria.
+              </p>
+              <div class="flex items-center justify-between">
+                <a href="#artigo-imoveis" class="text-cyan-600 font-semibold hover:text-cyan-700 transition">Continuar lendo</a>
+                <span class="text-sm text-gray-500">11 min</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Mensagem quando não há resultados -->
+        <div id="sem-resultados" class="hidden text-center py-16">
+          <svg class="mx-auto h-24 w-24 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <h3 class="text-xl font-semibold text-gray-700 mb-2">Nenhum artigo encontrado</h3>
+          <p class="text-gray-500">Tente selecionar outra categoria</p>
+        </div>
+
+        <!-- Paginação -->
+        <div id="paginacao" class="flex justify-center items-center gap-2 mt-12">
+          <button class="px-4 py-2 rounded-lg bg-white text-gray-400 cursor-not-allowed" disabled>
+            Anterior
+          </button>
+          <button class="px-4 py-2 rounded-lg bg-[#133540] text-white font-semibold">1</button>
+          <button class="px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition">2</button>
+          <button class="px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition">3</button>
+          <button class="px-4 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition">
+            Próximo
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0f1a] text-gray-400 py-6">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-6">
+        
+        <!-- Texto -->
+        <div class="text-center md:text-left">
+          <p class="text-sm mb-2 text-gray-300">
+            Conecta Consórcios • Transparência que conecta
+          </p>
+          <p class="text-xs text-gray-500">
+            Autorizada e regulamentada pelo Banco Central do Brasil
+          </p>
+        </div>
+
+        <!-- Ícones -->
+        <div class="flex justify-center md:justify-end gap-6">
+          <a href="https://www.instagram.com/conectaconsorcios" target="_blank" class="hover:text-cyan-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.88a1.12 1.12 0 1 1-2.25 0 1.12 1.12 0 0 1 2.25 0z" />
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@conectaconsorcio" target="_blank" class="hover:text-cyan-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+              <path d="M12.5 2c.3 2.2 1.8 4 3.9 4.7V10c-1.1-.1-2.1-.4-3-1v6.1c0 2.3-1.7 4.3-4 4.8-2.8.5-5.4-1.3-6-4-.5-2.8 1.3-5.4 4-6 .4-.1.8-.1 1.2-.1V12c-.2 0-.5 0-.7.1-1.2.2-2.1 1.3-2.1 2.5 0 1.5 1.4 2.7 2.9 2.4 1.1-.2 1.9-1.2 1.9-2.3V2h2.9z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sistema de Filtro de Artigos
+      document.addEventListener('DOMContentLoaded', function() {
+        const filtros = document.querySelectorAll('.filtro-btn');
+        const artigos = document.querySelectorAll('.artigo-item');
+        const contadorTotal = document.getElementById('total-artigos');
+        const semResultados = document.getElementById('sem-resultados');
+        const paginacao = document.getElementById('paginacao');
+
+        function filtrarArtigos(categoria) {
+          let contador = 0;
+
+          artigos.forEach(artigo => {
+            const categoriaArtigo = artigo.getAttribute('data-categoria');
+            
+            if (categoria === 'TODOS' || categoriaArtigo === categoria) {
+              artigo.style.display = '';
+              artigo.classList.add('animate-fade-in');
+              contador++;
+            } else {
+              artigo.style.display = 'none';
+              artigo.classList.remove('animate-fade-in');
+            }
+          });
+
+          // Atualizar contador
+          contadorTotal.textContent = contador;
+
+          // Mostrar/ocultar mensagem de sem resultados
+          if (contador === 0) {
+            semResultados.classList.remove('hidden');
+            paginacao.classList.add('hidden');
+          } else {
+            semResultados.classList.add('hidden');
+            paginacao.classList.remove('hidden');
+          }
+        }
+
+        // Event listeners para os botões de filtro
+        filtros.forEach(filtro => {
+          filtro.addEventListener('click', function() {
+            // Remover estado ativo de todos os botões
+            filtros.forEach(btn => {
+              btn.classList.remove('bg-[#133540]', 'text-white', 'shadow-md');
+              btn.classList.add('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
+            });
+
+            // Adicionar estado ativo ao botão clicado
+            this.classList.remove('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
+            this.classList.add('bg-[#133540]', 'text-white', 'shadow-md');
+
+            // Filtrar artigos
+            const categoria = this.getAttribute('data-categoria');
+            filtrarArtigos(categoria);
+
+            // Scroll suave para os artigos
+            document.querySelector('.grid').scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          });
+        });
+
+        // Adicionar animação CSS
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fade-in {
+            animation: fadeIn 0.4s ease-out;
+          }
+        `;
+        document.head.appendChild(style);
+      });
+    </script>
+  </body>
+</html>
