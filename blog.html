@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -6,43 +5,159 @@
     <title>Blog - Conecta Consórcios</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* remove scrollbar*/
-      .carousel-track {
-        -ms-overflow-style: none;  
-        scrollbar-width: none;    
-      }
-      .carousel-track::-webkit-scrollbar {
-        display: none;             
-      }
+      .menu-hamburguer { transition: all 0.3s ease; }
+      .menu-hamburguer.active .line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      .menu-hamburguer.active .line:nth-child(2) { opacity: 0; }
+      .menu-hamburguer.active .line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-      .card-link { 
-        display: block; 
-        text-decoration: none; 
-        color: inherit; 
-      }
+      .menu-lateral { transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+      .menu-lateral.open { transform: translateX(0); }
 
-      /* foco acessível */
-      .card-link:focus { 
-        outline: 3px solid rgba(6,182,212,0.25); 
-        outline-offset: 4px; 
-        border-radius: 0.5rem; 
-      }
+      .overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+      .overlay.show { opacity: 1; pointer-events: all; }
+
+      .search-mobile { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+      .search-mobile.show { max-height: 100px; }
+
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      .animate-fade-in { animation: fadeIn 0.4s ease-out; }
     </style>
   </head>
-  <body class="font-[Sans-serif] bg-gray-50 text-[#0a0f1a] pt-20">
-
-    <header class="bg-white text-[#0a0f1a] py-4 shadow-sm fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
-            <img src="imagens/logo-conecta.png" alt="Logo Conecta" class="h-12" />
-
-            <div class="flex items-center gap-4">
-                <a href="artigos.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">ARTIGOS</a>
-                <a href="blog.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition"> BLOG </a>
-                <a href="sobre.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">QUEM SOMOS</a>
+  <body class="font-[Sans-serif] bg-gray-50 text-[#0a0f1a] pt-24">
+    
+    <!-- Header Fixo -->
+    <header class="bg-[#0a0f1a] shadow-sm fixed top-0 left-0 right-0 z-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- Header Principal -->
+        <div class="flex items-center justify-between py-4 gap-4">
+          
+          <!-- Menu Hambúrguer -->
+          <button id="menuToggle" class="p-2 hover:bg-cyan-400/20 rounded-lg transition-colors" aria-label="Abrir menu">
+            <div class="w-6 h-5 flex flex-col justify-between">
+              <span class="block h-0.5 w-full bg-white rounded transition-all"></span>
+              <span class="block h-0.5 w-full bg-white rounded transition-all"></span>
+              <span class="block h-0.5 w-full bg-white rounded transition-all"></span>
             </div>
-        </div> 
+          </button>
+
+          <!-- Logo + Divisória -->
+          <div class="flex items-center gap-3">
+            <a href="blog.html" class="flex-shrink-0">
+              <img src="imagens/logo-conecta-branca-02.png" alt="Logo Conecta" class="h-8" />
+            </a>
+          </div>
     </header>
 
+    <!-- Overlay -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black/50 z-40"></div>
+
+    <!-- Menu Lateral -->
+    <nav id="menuLateral" class="menu-lateral fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-50 overflow-y-auto">
+      <div class="p-6">
+        <!-- Cabeçalho do Menu -->
+        <div class="flex items-center justify-between mb-8">
+          <button id="menuClose" class="p-2 hover:bg-gray-100 rounded-lg transition-colors" aria-label="Fechar menu">
+            <svg class="w-6 h-6 text-[#0a0f1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <img src="imagens/logo-conecta.png" alt="Logo Conecta" class="h-10" />
+        </div>
+
+        <!-- Links de Navegação -->
+        <ul class="space-y-2">
+          <li>
+            <a href="artigos.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-cyan-50 transition-colors group">
+              <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span class="font-semibold text-cyan-600">Artigos</span>
+            </a>
+          </li>
+          <li>
+            <a href="blog.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors group">
+              <svg class="w-5 h-5 text-gray-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+              <span class="font-semibold text-gray-700 group-hover:text-cyan-600">Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="sobre.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors group">
+              <svg class="w-5 h-5 text-gray-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="font-semibold text-gray-700 group-hover:text-cyan-600">Quem Somos</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Divisor -->
+        <div class="my-6 border-t border-gray-200"></div>
+
+        <!-- Seção de Categorias -->
+        <div class="mb-6">
+          <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3 px-4">Navegue por Categorias</h3>
+          <ul class="space-y-1">
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="DESTAQUE">
+                Destaque
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="EDUCAÇÃO">
+                Educação
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="ESTRATÉGIA">
+                Estratégia
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="INVESTIMENTO">
+                Investimento
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="PLANEJAMENTO">
+                Planejamento
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="AUTOMÓVEIS">
+                Automóveis
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="IMÓVEIS">
+                Imóveis
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Divisor -->
+        <div class="my-6 border-t border-gray-200"></div>
+
+        <!-- Redes Sociais -->
+        <div class="px-4">
+          <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Siga-nos</h3>
+          <div class="flex gap-3">
+            <a href="https://www.instagram.com/conectaconsorcios" target="_blank" class="p-2 bg-gray-100 rounded-lg hover:bg-cyan-100 transition-colors">
+              <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.88a1.12 1.12 0 1 1-2.25 0 1.12 1.12 0 0 1 2.25 0z" />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@conectaconsorcio" target="_blank" class="p-2 bg-gray-100 rounded-lg hover:bg-cyan-100 transition-colors">
+              <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.5 2c.3 2.2 1.8 4 3.9 4.7V10c-1.1-.1-2.1-.4-3-1v6.1c0 2.3-1.7 4.3-4 4.8-2.8.5-5.4-1.3-6-4-.5-2.8 1.3-5.4 4-6 .4-.1.8-.1 1.2-.1V12c-.2 0-.5 0-.7.1-1.2.2-2.1 1.3-2.1 2.5 0 1.5 1.4 2.7 2.9 2.4 1.1-.2 1.9-1.2 1.9-2.3V2h2.9z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <section class="py-12 bg-[#0a0f1a]">
         <div class="max-w-5xl mx-auto px-4">
@@ -376,52 +491,55 @@
     </footer>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function(){
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menuToggle");
+        const menuLateral = document.getElementById("menuLateral");
+        const overlay = document.getElementById("overlay");
+        const searchToggleMobile = document.getElementById("searchToggleMobile");
+        const searchMobile = document.getElementById("searchMobile");
+        const menuClose = document.getElementById("menuClose");
+
+        // Menu lateral toggle
+        function toggleMenu(open) {
+          menuLateral?.classList.toggle("open", open);
+          overlay?.classList.toggle("show", open);
+          menuToggle?.classList.toggle("active", open);
+          document.body.classList.toggle("overflow-hidden", open);
+        }
+
+        menuToggle?.addEventListener("click", () => toggleMenu(true));
+        menuClose?.addEventListener("click", () => toggleMenu(false));
+        overlay?.addEventListener("click", () => toggleMenu(false));
+
+        // Carousel
         const track = document.querySelector('.carousel-track');
         const prevBtn = document.querySelector('.carousel-prev');
         const nextBtn = document.querySelector('.carousel-next');
 
-        if(!track || !prevBtn || !nextBtn) return;
-
-        // determina largura de um card visível (usa o primeiro .card-item)
-        function getScrollAmount() {
+        if(track && prevBtn && nextBtn) {
+          function getScrollAmount() {
             const card = track.querySelector('.card-item');
-            if (!card) return track.clientWidth;
-            const gap = parseFloat(getComputedStyle(track).gap) || 16; // gap do flex
-            const width = card.getBoundingClientRect().width;
-            return Math.round(width + gap);
-        }
+            const gap = parseFloat(getComputedStyle(track).gap) || 16;
+            return card ? Math.round(card.getBoundingClientRect().width + gap) : track.clientWidth;
+          }
 
-        prevBtn.addEventListener('click', () => {
-            const amount = getScrollAmount();
-            track.scrollBy({ left: -amount, behavior: 'smooth' });
-        });
+          prevBtn.addEventListener('click', () => track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
+          nextBtn.addEventListener('click', () => track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' }));
 
-        nextBtn.addEventListener('click', () => {
-            const amount = getScrollAmount();
-            track.scrollBy({ left: amount, behavior: 'smooth' });
-        });
+          track.setAttribute('tabindex', '0');
+          track.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight') nextBtn.click();
+            if(e.key === 'ArrowLeft') prevBtn.click();
+          });
 
-        // opcional: teclas esquerda/direita quando o track está em foco (acessibilidade)
-        track.setAttribute('tabindex', '0');
-        track.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextBtn.click();
-            if (e.key === 'ArrowLeft') prevBtn.click();
-        });
-
-        // opcional: esconder setas quando não há overflow
-        function updateArrows() {
+          function updateArrows() {
             const maxScroll = track.scrollWidth - track.clientWidth;
-            if (maxScroll <= 1) {
-              prevBtn.style.visibility = 'hidden';
-              nextBtn.style.visibility = 'hidden';
-            } else {
-              prevBtn.style.visibility = 'visible';
-              nextBtn.style.visibility = 'visible';
-            }
+            prevBtn.style.visibility = maxScroll <= 1 ? 'hidden' : 'visible';
+            nextBtn.style.visibility = maxScroll <= 1 ? 'hidden' : 'visible';
+          }
+          window.addEventListener('resize', updateArrows);
+          updateArrows();
         }
-        window.addEventListener('resize', updateArrows);
-        updateArrows();
       });
     </script>
     <script src="interactivePanel2.js"></script>

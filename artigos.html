@@ -5,64 +5,242 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artigos - Conecta Consórcios</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Animação do menu hambúrguer */
+      .menu-hamburguer {
+        transition: all 0.3s ease;
+      }
+      
+      .menu-hamburguer.active .line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .menu-hamburguer.active .line:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .menu-hamburguer.active .line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+      
+      /* Animação do menu lateral */
+      .menu-lateral {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .menu-lateral.open {
+        transform: translateX(0);
+      }
+      
+      /* Overlay */
+      .overlay {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      
+      .overlay.show {
+        opacity: 1;
+        pointer-events: all;
+      }
+      
+      /* Animação da barra de pesquisa mobile */
+      .search-mobile {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      
+      .search-mobile.show {
+        max-height: 100px;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.4s ease-out;
+      }
+    </style>
   </head>
-  <body class="font-[Sans-serif] bg-gray-50 text-[#0a0f1a] pt-20">
+  <body class="font-[Sans-serif] bg-gray-50 text-[#0a0f1a] pt-24">
+    
     <!-- Header Fixo -->
-    <header class="bg-white text-[#0a0f1a] py-4 shadow-sm fixed top-0 left-0 right-0 z-50">
-      <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
-        <img src="imagens/logo-conecta.png" alt="Logo Conecta" class="h-12" />
-        <div class="flex items-center gap-4">
-          <a href="artigos.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">ARTIGOS</a>
-          <a href="blog.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">BLOG</a>
-          <a href="sobre.html" class="font-semibold px-4 py-2 rounded-md hover:text-cyan-400 transition">QUEM SOMOS</a>
+    <header class="bg-[#0a0f1a] shadow-sm fixed top-0 left-0 right-0 z-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- Header Principal -->
+        <div class="flex items-center justify-between py-4 gap-4">
+          
+          <!-- Menu Hambúrguer -->
+          <button id="menuToggle" class="p-2 hover:bg-cyan-400/20 rounded-lg transition-colors" aria-label="Abrir menu">
+            <div class="w-6 h-5 flex flex-col justify-between">
+              <span class="block h-0.5 w-full bg-white rounded transition-all"></span>
+              <span class="block h-0.5 w-full bg-white rounded transition-all"></span>
+              <span class="block h-0.5 w-full bg-white rounded transition-all"></span>
+            </div>
+          </button>
+
+          <!-- Logo + Divisória -->
+          <div class="flex items-center gap-3">
+            <a href="blog.html" class="flex-shrink-0">
+              <img src="imagens/logo-conecta-branca.png" alt="Logo Conecta" class="h-8" />
+            </a>
+            <span class="block h-6 w-px bg-white/40"></span>
+            <h2 class="text-lg text-white font-semibold text-center flex-1 hidden md:block">ARTIGOS</h2>
+          </div>
+
+          <!-- Busca Desktop -->
+          <div class="hidden md:flex items-center">
+            <div class="relative">
+              <input 
+                type="text" 
+                id="searchInput"
+                placeholder="Buscar artigos..." 
+                class="w-64 pl-10 pr-4 py-2 bg-transparent text-white border border-white/30 rounded-lg focus:border-cyan-400 focus:outline-none placeholder-gray-300 transition-colors"
+              />
+              <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Ícone de Pesquisa Mobile -->
+          <button id="searchToggleMobile" class="md:hidden p-2 hover:bg-white/10 rounded-lg transition-colors" aria-label="Buscar">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Barra de Pesquisa Mobile -->
+        <div id="searchMobile" class="hidden md:hidden pb-4">
+          <div class="relative">
+            <input 
+              type="text" 
+              id="searchInputMobile"
+              placeholder="Buscar artigos..." 
+              class="w-full pl-10 pr-4 py-2 border border-white/30 bg-transparent text-white rounded-lg focus:border-cyan-400 focus:outline-none placeholder-gray-300 transition-colors"
+            />
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
         </div>
       </div>
     </header>
 
-    <!-- Section Nav com Filtros -->
-    <section id="nav" class="bg-gradient-to-t from-gray-50 to-white py-12 pb-6">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6"> 
-          <!-- Filtro de Categorias -->
-          <div class="flex items-center gap-3">
-            <span class="text-sm font-semibold text-[#133540]">Filtrar por:</span>
-            <div class="flex flex-wrap gap-2">
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-[#133540] text-white shadow-md" data-categoria="TODOS">
-                Todos
-              </button>
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="DESTAQUE">
-                Destaque
-              </button>
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="COMPARATIVO">
-                Comparativo
-              </button>
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="EDUCAÇÃO">
-                Educação
-              </button>
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="ESTRATÉGIA">
-                Estratégia
-              </button>
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="INVESTIMENTO">
-                Investimento
-              </button>
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="PLANEJAMENTO">
-                Planejamento
-              </button>
-              <button class="filtro-btn px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 bg-white text-gray-700 border-2 border-gray-200 hover:border-cyan-400" data-categoria="IMÓVEIS">
-                Imóveis
-              </button>
-            </div>
-          </div>
+    <!-- Overlay -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black/50 z-40"></div>
+
+    <!-- Menu Lateral -->
+    <nav id="menuLateral" class="menu-lateral fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-50 overflow-y-auto">
+      <div class="p-6">
+        <!-- Cabeçalho do Menu -->
+        <div class="flex items-center justify-between mb-8">
+          <button id="menuClose" class="p-2 hover:bg-gray-100 rounded-lg transition-colors" aria-label="Fechar menu">
+            <svg class="w-6 h-6 text-[#0a0f1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <img src="imagens/logo-conecta.png" alt="Logo Conecta" class="h-10" />
         </div>
 
-        <!-- Contador de Resultados -->
-        <div class="mt-6 text-center">
-          <p id="contador-resultados" class="text-sm text-gray-600">
-            <span class="font-semibold" id="total-artigos">8</span> artigos encontrados
-          </p>
+        <!-- Links de Navegação -->
+        <ul class="space-y-2">
+          <li>
+            <a href="artigos.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-cyan-50 transition-colors group">
+              <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span class="font-semibold text-cyan-600">Artigos</span>
+            </a>
+          </li>
+          <li>
+            <a href="blog.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors group">
+              <svg class="w-5 h-5 text-gray-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+              <span class="font-semibold text-gray-700 group-hover:text-cyan-600">Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="sobre.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors group">
+              <svg class="w-5 h-5 text-gray-600 group-hover:text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="font-semibold text-gray-700 group-hover:text-cyan-600">Quem Somos</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Divisor -->
+        <div class="my-6 border-t border-gray-200"></div>
+
+        <!-- Seção de Categorias -->
+        <div class="mb-6">
+          <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3 px-4">Navegue por Categorias</h3>
+          <ul class="space-y-1">
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="DESTAQUE">
+                Destaque
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="EDUCAÇÃO">
+                Educação
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="ESTRATÉGIA">
+                Estratégia
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="INVESTIMENTO">
+                Investimento
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="PLANEJAMENTO">
+                Planejamento
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="AUTOMÓVEIS">
+                Automóveis
+              </button>
+            </li>
+            <li>
+              <button class="filtro-btn-menu w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-categoria="IMÓVEIS">
+                Imóveis
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Divisor -->
+        <div class="my-6 border-t border-gray-200"></div>
+
+        <!-- Redes Sociais -->
+        <div class="px-4">
+          <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Siga-nos</h3>
+          <div class="flex gap-3">
+            <a href="https://www.instagram.com/conectaconsorcios" target="_blank" class="p-2 bg-gray-100 rounded-lg hover:bg-cyan-100 transition-colors">
+              <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.88a1.12 1.12 0 1 1-2.25 0 1.12 1.12 0 0 1 2.25 0z" />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@conectaconsorcio" target="_blank" class="p-2 bg-gray-100 rounded-lg hover:bg-cyan-100 transition-colors">
+              <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.5 2c.3 2.2 1.8 4 3.9 4.7V10c-1.1-.1-2.1-.4-3-1v6.1c0 2.3-1.7 4.3-4 4.8-2.8.5-5.4-1.3-6-4-.5-2.8 1.3-5.4 4-6 .4-.1.8-.1 1.2-.1V12c-.2 0-.5 0-.7.1-1.2.2-2.1 1.3-2.1 2.5 0 1.5 1.4 2.7 2.9 2.4 1.1-.2 1.9-1.2 1.9-2.3V2h2.9z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
+    </nav>
 
     <!-- Grid de Artigos -->
     <section class="py-16 pt-6 bg-gray-50">
@@ -266,81 +444,75 @@
     </footer>
 
     <script>
-      // Sistema de Filtro de Artigos
-      document.addEventListener('DOMContentLoaded', function() {
-        const filtros = document.querySelectorAll('.filtro-btn');
-        const artigos = document.querySelectorAll('.artigo-item');
-        const contadorTotal = document.getElementById('total-artigos');
-        const semResultados = document.getElementById('sem-resultados');
-        const paginacao = document.getElementById('paginacao');
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menuToggle");
+        const menuLateral = document.getElementById("menuLateral");
+        const overlay = document.getElementById("overlay");
+        const searchToggleMobile = document.getElementById("searchToggleMobile");
+        const searchMobile = document.getElementById("searchMobile");
+        const menuClose = document.getElementById("menuClose");
+        const searchInputs = document.querySelectorAll("#searchInput, #searchInputMobile");
+        const artigos = document.querySelectorAll(".artigo-item");
+        const semResultados = document.getElementById("sem-resultados");
+        const botoesFiltro = document.querySelectorAll(".filtro-btn-menu");
 
-        function filtrarArtigos(categoria) {
-          let contador = 0;
-
-          artigos.forEach(artigo => {
-            const categoriaArtigo = artigo.getAttribute('data-categoria');
-            
-            if (categoria === 'TODOS' || categoriaArtigo === categoria) {
-              artigo.style.display = '';
-              artigo.classList.add('animate-fade-in');
-              contador++;
-            } else {
-              artigo.style.display = 'none';
-              artigo.classList.remove('animate-fade-in');
-            }
-          });
-
-          // Atualizar contador
-          contadorTotal.textContent = contador;
-
-          // Mostrar/ocultar mensagem de sem resultados
-          if (contador === 0) {
-            semResultados.classList.remove('hidden');
-            paginacao.classList.add('hidden');
-          } else {
-            semResultados.classList.add('hidden');
-            paginacao.classList.remove('hidden');
-          }
+        // --- MENU LATERAL ---
+        function toggleMenu(open) {
+          menuLateral.classList.toggle("open", open);
+          overlay.classList.toggle("show", open);
+          menuToggle.classList.toggle("active", open);
+          document.body.classList.toggle("overflow-hidden", open);
         }
 
-        // Event listeners para os botões de filtro
-        filtros.forEach(filtro => {
-          filtro.addEventListener('click', function() {
-            // Remover estado ativo de todos os botões
-            filtros.forEach(btn => {
-              btn.classList.remove('bg-[#133540]', 'text-white', 'shadow-md');
-              btn.classList.add('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
+        menuToggle.addEventListener("click", () => toggleMenu(true));
+        menuClose.addEventListener("click", () => toggleMenu(false));
+        overlay.addEventListener("click", () => toggleMenu(false));
+
+        // --- PESQUISA MOBILE ---
+        searchToggleMobile.addEventListener("click", () => {
+          searchMobile.classList.toggle("show");
+          const input = searchMobile.querySelector("input");
+          if (searchMobile.classList.contains("show")) input.focus();
+        });
+
+        // --- FILTRO POR CATEGORIA ---
+        botoesFiltro.forEach(btn => {
+          btn.addEventListener("click", () => {
+            const categoria = btn.dataset.categoria;
+            const tituloPrincipal = document.querySelector("h2.text-lg.text-white.font-semibold.text-center");
+            if (tituloPrincipal) {
+              tituloPrincipal.textContent = categoria === "TODOS" ? "ARTIGOS" : categoria;
+            }
+
+            let algumVisivel = false;
+            artigos.forEach(a => {
+              const match = categoria === "TODOS" || a.dataset.categoria === categoria;
+              a.classList.toggle("hidden", !match);
+              if (match) algumVisivel = true;
             });
-
-            // Adicionar estado ativo ao botão clicado
-            this.classList.remove('bg-white', 'text-gray-700', 'border-2', 'border-gray-200');
-            this.classList.add('bg-[#133540]', 'text-white', 'shadow-md');
-
-            // Filtrar artigos
-            const categoria = this.getAttribute('data-categoria');
-            filtrarArtigos(categoria);
-
-            // Scroll suave para os artigos
-            document.querySelector('.grid').scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'start' 
-            });
+            semResultados.classList.toggle("hidden", algumVisivel);
+            toggleMenu(false);
           });
         });
 
-        // Adicionar animação CSS
-        const style = document.createElement('style');
-        style.textContent = `
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-in {
-            animation: fadeIn 0.4s ease-out;
-          }
-        `;
-        document.head.appendChild(style);
+        // --- BUSCA EM TEMPO REAL ---
+        const filtrarArtigos = valor => {
+          const termo = valor.trim().toLowerCase();
+          let algumVisivel = false;
+          artigos.forEach(a => {
+            const texto = a.innerText.toLowerCase();
+            const match = texto.includes(termo);
+            a.classList.toggle("hidden", !match);
+            if (match) algumVisivel = true;
+          });
+          semResultados.classList.toggle("hidden", algumVisivel);
+        };
+
+        searchInputs.forEach(input => {
+          input.addEventListener("input", e => filtrarArtigos(e.target.value));
+        });
       });
-    </script>
+      </script>
+
   </body>
 </html>
